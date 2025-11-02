@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     int t = 0;
     float ans;
 
-    String num1,num2;
+    String num1="",num2="";
 
     char op;
 
@@ -113,78 +113,73 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        bplus.setOnClickListener(v->{bplus.setEnabled(false);op='+';String temp=AnsTxtV.getText().toString();if(!temp.equals("0")){num1=AnsTxtV.getText().toString();AnsTxtV.setText("+");iswh=false;}});
-        bdiff.setOnClickListener(v->{bdiff.setEnabled(false);op='-';String temp=AnsTxtV.getText().toString();if(!temp.equals("0")){num1=AnsTxtV.getText().toString();AnsTxtV.setText("-");iswh=false;}});
-        bmult.setOnClickListener(v->{bmult.setEnabled(false);op='*';String temp=AnsTxtV.getText().toString();if(!temp.equals("0")){num1=AnsTxtV.getText().toString();AnsTxtV.setText("*");iswh=false;}});
-        bdiv1.setOnClickListener(v->{bdiv1.setEnabled(false);op='/';String temp=AnsTxtV.getText().toString();if(!temp.equals("0")){num1=AnsTxtV.getText().toString();AnsTxtV.setText("/");iswh=false;}});
+        bplus.setOnClickListener(v->{op='+';String temp=AnsTxtV.getText().toString();if(!temp.equals("0")){bplus.setEnabled(false);num1=AnsTxtV.getText().toString();AnsTxtV.setText("+");iswh=false;}});
+        bdiff.setOnClickListener(v->{op='-';String temp=AnsTxtV.getText().toString();if(!temp.equals("0")){bdiff.setEnabled(false);num1=AnsTxtV.getText().toString();AnsTxtV.setText("-");iswh=false;}});
+        bmult.setOnClickListener(v->{op='*';String temp=AnsTxtV.getText().toString();if(!temp.equals("0")){bmult.setEnabled(false);num1=AnsTxtV.getText().toString();AnsTxtV.setText("*");iswh=false;}});
+        bdiv1.setOnClickListener(v->{op='/';String temp=AnsTxtV.getText().toString();if(!temp.equals("0")){bdiv1.setEnabled(false);num1=AnsTxtV.getText().toString();AnsTxtV.setText("/");iswh=false;}});
 //        bdiv2.setOnClickListener(v->{String temp=AnsTxtV.getText().toString();if(!temp.equals("0")){num1=AnsTxtV.getText().toString();AnsTxtV.setText("%");if(t==0){NumTxtV1.setText("Number 1 = " + num1);t=1;}else{NumTxtV2.setText("Number 2 = " + num1);t=0;}}});
 
         bequal.setOnClickListener(v->{
 
             num2 = AnsTxtV.getText().toString();
 
-            String ans = "";
+            if(num1.length()>0 && num2.length()>0) {
+                String ans = "";
 
-            switch (op){
-                case '+':
-                    bplus.setEnabled(true);
-                    ans = String.valueOf(Float.parseFloat(num1) + Float.parseFloat(num2));
-                    char ch1 = ans.charAt(ans.length()-2);
-                    char ch2 = ans.charAt(ans.length()-1);
-                    if(ch1 == '.' && ch2 == '0'){
-                        ans = ans.substring(0,ans.length()-2);
-                    }
-                    Ans.setText(num1 + " " + op + " " + num2 + "  = " + ans);
-                    break;
-                case '%':
-                    bdiv2.setEnabled(true);
-                    ans = String.valueOf(Float.parseFloat(num1) % Float.parseFloat(num2));
-                    char ch3 = ans.charAt(ans.length()-2);
-                    char ch4 = ans.charAt(ans.length()-1);
-                    if(ch3 == '.' && ch4 == '0'){
-                        ans = ans.substring(0,ans.length()-2);
-                    }
-                    Ans.setText(num1 + " " + op + " " + num2 + "  = " + ans);
-                    break;
-                case '-':
-                    bdiff.setEnabled(true);
-                    ans = String.valueOf(Float.parseFloat(num1) - Float.parseFloat(num2));
-                    char ch5 = ans.charAt(ans.length()-2);
-                    char ch6 = ans.charAt(ans.length()-1);
-                    if(ch5 == '.' && ch6 == '0'){
-                        ans = ans.substring(0,ans.length()-2);
-                    }
-                    Ans.setText(num1 + " " + op + " " + num2 + "  = " + ans);
-                    break;
-                case '*':
-                    bmult.setEnabled(true);
-                    ans = String.valueOf(Float.parseFloat(num1) * Float.parseFloat(num2));
-                    char ch7 = ans.charAt(ans.length()-2);
-                    char ch8 = ans.charAt(ans.length()-1);
-                    if(ch7 == '.' && ch8 == '0'){
-                        ans = ans.substring(0,ans.length()-2);
-                    }
-                    Ans.setText(num1 + " " + op + " " + num2 + "  = " + ans);
-                    break;
-                case '/':
-                    bdiv1.setEnabled(true);
-                    ans = String.valueOf(Float.parseFloat(num1) / Float.parseFloat(num2));
-                    char ch9 = ans.charAt(ans.length()-2);
-                    char ch10 = ans.charAt(ans.length()-1);
-                    if(ch9 == '.' && ch10 == '0'){
-                        ans = ans.substring(0,ans.length()-2);
-                    }
-                    Ans.setText(num1 + " " + op + " " + num2 + "  = " + ans);
-                    break;
+                switch (op) {
+                    case '+':
+                        bplus.setEnabled(true);
+                        ans = String.valueOf(Float.parseFloat(num1) + Float.parseFloat(num2));
+                        char ch1 = ans.charAt(ans.length() - 2);
+                        char ch2 = ans.charAt(ans.length() - 1);
+                        if (ch1 == '.' && ch2 == '0') {
+                            ans = ans.substring(0, ans.length() - 2);
+                        }
+                        Ans.setText(num1 + " " + op + " " + num2 + "  = " + ans);
+                        break;
+                    case '-':
+                        bdiff.setEnabled(true);
+                        ans = String.valueOf(Float.parseFloat(num1) - Float.parseFloat(num2));
+                        char ch5 = ans.charAt(ans.length() - 2);
+                        char ch6 = ans.charAt(ans.length() - 1);
+                        if (ch5 == '.' && ch6 == '0') {
+                            ans = ans.substring(0, ans.length() - 2);
+                        }
+                        Ans.setText(num1 + " " + op + " " + num2 + "  = " + ans);
+                        break;
+                    case '*':
+                        bmult.setEnabled(true);
+                        ans = String.valueOf(Float.parseFloat(num1) * Float.parseFloat(num2));
+                        char ch7 = ans.charAt(ans.length() - 2);
+                        char ch8 = ans.charAt(ans.length() - 1);
+                        if (ch7 == '.' && ch8 == '0') {
+                            ans = ans.substring(0, ans.length() - 2);
+                        }
+                        Ans.setText(num1 + " " + op + " " + num2 + "  = " + ans);
+                        break;
+                    case '/':
+                        if(num2 == "0"){
+                           Ans.setText("Invalid Operation");
+                        }else {
+                            bdiv1.setEnabled(true);
+                            ans = String.valueOf(Float.parseFloat(num1) / Float.parseFloat(num2));
+                            char ch9 = ans.charAt(ans.length() - 2);
+                            char ch10 = ans.charAt(ans.length() - 1);
+                            if (ch9 == '.' && ch10 == '0') {
+                                ans = ans.substring(0, ans.length() - 2);
+                            }
+                            Ans.setText(num1 + " " + op + " " + num2 + "  = " + ans);
+                        }
+                        break;
+                }
+                AnsTxtV.setText("0");
             }
-            AnsTxtV.setText("0");
-
 
         });
 
 
 
-        bclear.setOnClickListener(v->{AnsTxtV.setText("0");iswh = false; NumTxtV1.setText(""); NumTxtV2.setText(""); Ans.setText("");bplus.setEnabled(true);bdiff.setEnabled(true);bmult.setEnabled(true);bdiv1.setEnabled(true);});
+        bclear.setOnClickListener(v->{num1="";num2="";AnsTxtV.setText("0");iswh = false; NumTxtV1.setText(""); NumTxtV2.setText(""); Ans.setText("");bplus.setEnabled(true);bdiff.setEnabled(true);bmult.setEnabled(true);bdiv1.setEnabled(true);});
 
 
 
